@@ -1,0 +1,6 @@
+{
+  "name": "BMI Pulse",
+  "description": "Material 3 Expressive BMI calculator, body composition analyzer, percentile tracker, and offline-first health companion.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

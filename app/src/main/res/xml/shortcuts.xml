@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="quick_calc"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher_round"
+        android:shortcutShortLabel="@string/shortcut_quick_calc_short"
+        android:shortcutLongLabel="@string/shortcut_quick_calc_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.aistudio.bmipulse.vqxkpl"
+            android:targetClass="com.example.MainActivity">
+            <extra android:name="shortcut_dest" android:value="calculator" />
+        </intent>
+    </shortcut>
+    <shortcut
+        android:shortcutId="log_weight"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher_round"
+        android:shortcutShortLabel="@string/shortcut_log_weight_short"
+        android:shortcutLongLabel="@string/shortcut_log_weight_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.aistudio.bmipulse.vqxkpl"
+            android:targetClass="com.example.MainActivity">
+            <extra android:name="shortcut_dest" android:value="log" />
+        </intent>
+    </shortcut>
+    <shortcut
+        android:shortcutId="body_comp"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher_round"
+        android:shortcutShortLabel="@string/shortcut_body_comp_short"
+        android:shortcutLongLabel="@string/shortcut_body_comp_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.aistudio.bmipulse.vqxkpl"
+            android:targetClass="com.example.MainActivity">
+            <extra android:name="shortcut_dest" android:value="body_comp" />
+        </intent>
+    </shortcut>
+</shortcuts>

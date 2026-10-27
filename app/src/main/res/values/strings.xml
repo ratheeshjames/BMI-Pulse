@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BMI Pulse</string>
+    <string name="app_tagline">Material 3 Expressive BMI, Body Composition &amp; Health Tracker</string>
+    <string name="medical_disclaimer_title">Medical Disclaimer</string>
+    <string name="medical_disclaimer_body">BMI Pulse is an informational wellness tool and is not a medical device. BMI, body fat estimates, BMR/TDEE, and percentile calculations are screening metrics and do not diagnose medical conditions. Always consult a qualified physician or healthcare professional before starting a diet, weight loss, or exercise program, especially during pregnancy, adolescence, or when managing chronic conditions.</string>
+    <string name="nav_dashboard">Pulse</string>
+    <string name="nav_calculator">Calculator</string>
+    <string name="nav_body_comp">Body Lab</string>
+    <string name="nav_analytics">Charts</string>
+    <string name="nav_hub">Hub &amp; Vault</string>
+    <string name="shortcut_quick_calc_short">Quick BMI</string>
+    <string name="shortcut_quick_calc_long">Calculate BMI Now</string>
+    <string name="shortcut_log_weight_short">Log Weight</string>
+    <string name="shortcut_log_weight_long">Log Today\'s Weight &amp; Measurements</string>
+    <string name="shortcut_body_comp_short">Body Fat</string>
+    <string name="shortcut_body_comp_long">Analyze US Navy Body Fat &amp; BMR</string>
+    <string name="widget_desc">BMI Pulse live BMI, streak counter, and 1-tap weight logger.</string>
+    <string name="qs_tile_label">Log BMI Weight</string>
+</resources>

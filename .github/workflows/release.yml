@@ -1,0 +1,66 @@
+name: Android Release APK & GitHub Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build Release APK & Publish GitHub Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Generate Upload Keystore (if not provided via Secrets)
+        run: |
+          keytool -genkeypair -v \
+            -keystore release-upload.jks \
+            -alias upload \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass "${{ secrets.STORE_PASSWORD || 'bmipulse123' }}" \
+            -keypass "${{ secrets.KEY_PASSWORD || 'bmipulse123' }}" \
+            -dname "CN=BMI Pulse, OU=Mobile, O=BMI Pulse Health, L=San Francisco, S=CA, C=US"
+
+      - name: Run Unit Tests
+        run: ./gradlew :app:testDebugUnitTest
+
+      - name: Build Signed Release APK
+        env:
+          KEYSTORE_PATH: ${{ github.workspace }}/release-upload.jks
+          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD || 'bmipulse123' }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD || 'bmipulse123' }}
+        run: |
+          ./gradlew assembleRelease
+          mkdir -p "Generated APKs"
+          cp app/build/outputs/apk/release/app-release.apk "Generated APKs/BMI-Pulse-${GITHUB_REF_NAME:-v1.0.0}-release.apk"
+          cp app/build/outputs/apk/release/app-release.apk "Generated APKs/app-release.apk"
+          sha256sum "Generated APKs/"*.apk > "Generated APKs/SHA256SUMS.txt"
+
+      - name: Upload Release APKs Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Generated-APKs
+          path: Generated APKs/
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: RELEASE_NOTES.md
+          files: |
+            Generated APKs/BMI-Pulse-*-release.apk
+            Generated APKs/app-release.apk
+            Generated APKs/SHA256SUMS.txt
